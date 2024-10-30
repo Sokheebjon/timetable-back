@@ -37,3 +37,4 @@ jobs:
           cd /home/user/timetable-back/
           sudo pm2 kill
           sudo pm2 start dist/src/main.js --name main.js
+
