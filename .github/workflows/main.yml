@@ -28,7 +28,7 @@ jobs:
       - name: Build and Test for Production
         run: |
           echo "Running production build"
-          sudo cp .env /home/user/timetable-back/
+          # sudo cp .env /home/user/timetable-back/
           yarn build
 
       - name: Deploy to Production
