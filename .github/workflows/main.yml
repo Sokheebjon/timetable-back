@@ -9,7 +9,7 @@ on:
 jobs:
   build-main:
     if: github.ref == 'refs/heads/main'
-    runs-on: rtu-timetable
+    runs-on: timetable-back
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
