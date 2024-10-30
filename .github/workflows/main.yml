@@ -23,7 +23,7 @@ jobs:
         run: npm install --global yarn
 
       - name: Install dependencies
-        run: cd server && yarn install
+        run:  yarn install
 
       - name: Build and Test for Production
         run: |
@@ -34,6 +34,6 @@ jobs:
       - name: Deploy to Production
         run: |
           cp -a /home/actions-runner/_work/rtu-timetable/rtu-timetable/. /home/user/rtu-timetable/
-          cd /home/user/rtu-timetable/server/
+          cd /home/user/rtu-timetable/
           sudo pm2 kill
           sudo pm2 start dist/src/main.js --name main.js
