@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev 
+
+jobs:
+  build-main:
+    if: github.ref == 'refs/heads/main'
+    runs-on: rtu-timetable
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      
+      - name: Add yarn globally
+        run: npm install --global yarn
+
+      - name: Install dependencies
+        run: cd server && yarn install
+
+      - name: Build and Test for Production
+        run: |
+          echo "Running production build"
+          sudo cp .env.production .env
+          yarn build
+
+      - name: Deploy to Production
+        run: |
+          cp -a /home/actions-runner/_work/rtu-timetable/rtu-timetable/. /home/user/rtu-timetable/
+          cd /home/user/rtu-timetable/server/
+          sudo pm2 kill
+          sudo pm2 start dist/src/main.js --name main.js
