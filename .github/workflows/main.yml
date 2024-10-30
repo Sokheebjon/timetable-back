@@ -33,7 +33,7 @@ jobs:
 
       - name: Deploy to Production
         run: |
-          cp -a /home/actions-runner/_work/timetable-back/timetable-back/. /home/user/timetable-back/
+          cp -a ~/timetable-back/actions-runner/_work/timetable-back/timetable-back/. /home/user/timetable-back/
           cd /home/user/timetable-back/
           sudo pm2 kill
           sudo pm2 start dist/src/main.js --name main.js
