@@ -28,12 +28,12 @@ jobs:
       - name: Build and Test for Production
         run: |
           echo "Running production build"
-          sudo cp .env
+          sudo cp .env /home/user/timetable-back/
           yarn build
 
       - name: Deploy to Production
         run: |
-          cp -a /home/actions-runner/_work/rtu-timetable/rtu-timetable/. /home/user/rtu-timetable/
-          cd /home/user/rtu-timetable/
+          cp -a /home/actions-runner/_work/rtu-timetable/rtu-timetable/. /home/user/timetable-back/
+          cd /home/user/timetable-back/
           sudo pm2 kill
           sudo pm2 start dist/src/main.js --name main.js
