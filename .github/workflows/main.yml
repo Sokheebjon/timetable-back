@@ -29,7 +29,8 @@ jobs:
         run: |
           echo "Running production build"
           sudo cp .env
-          yarn build
+          npx nx run-many --target=generate-prod 
+          npx nx run-many --target=build --production
 
       - name: Deploy to Production
         run: |
