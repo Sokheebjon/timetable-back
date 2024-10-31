@@ -28,7 +28,7 @@ jobs:
       - name: Build and Test for Production
         run: |
           echo "Running production build"
-          #sudo cp .env
+          #sudo cp .env .env
           yarn build
 
       - name: Deploy to Production
