@@ -28,7 +28,7 @@ jobs:
       - name: Build and Test for Production
         run: |
           echo "Running production build"
-          #sudo cp .env .env
+          sudo cp .env /home/timetable-back/
           yarn build
 
       - name: Deploy to Production
@@ -37,5 +37,4 @@ jobs:
           cd /home/timetable-back/
           sudo pm2 delete timetable-back
           sudo PORT=4455 pm2 start dist/src/main.js --name timetable-back
-          npx prisma generate
 
