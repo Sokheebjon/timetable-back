@@ -37,4 +37,5 @@ jobs:
           cd /home/timetable-back/
           sudo pm2 delete timetable-back
           sudo PORT=4455 pm2 start dist/src/main.js --name timetable-back
+          npx prisma generate
 
