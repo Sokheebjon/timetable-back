@@ -65,23 +65,23 @@ export class HemisService {
 
       totalData.push(...firstResponse.data.data.items);
 
-      const pageSize = firstResponse.data.data.pagination?.pageCount;
+      // const pageSize = firstResponse.data.data.pagination?.pageCount;
 
-      for (let i = 2; i <= pageSize; i++) {
-        const response = await handleAsyncOperation(
-          firstValueFrom(
-            this.http
-              .get(`${this.hemisUrl}/data/schedule-list`, {
-                headers: {
-                  Authorization: `Bearer ${this.token}`,
-                },
-                params,
-              })
-              .pipe(timeout(5000)),
-          ),
-        );
-        totalData.push(...response.data.data.items);
-      }
+      // for (let i = 2; i <= pageSize; i++) {
+      //   const response = await handleAsyncOperation(
+      //     firstValueFrom(
+      //       this.http
+      //         .get(`${this.hemisUrl}/data/schedule-list`, {
+      //           headers: {
+      //             Authorization: `Bearer ${this.token}`,
+      //           },
+      //           params,
+      //         })
+      //         .pipe(timeout(5000)),
+      //     ),
+      //   );
+      //   totalData.push(...response.data.data.items);
+      // }
 
       const scheduleList = totalData.sort(
         (a: any, b: any) => a.lesson_date - b.lesson_date,
