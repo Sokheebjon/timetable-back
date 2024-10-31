@@ -36,5 +36,5 @@ jobs:
           cp -a ~/timetable-back/actions-runner/_work/timetable-back/timetable-back/. /home/timetable-back/
           cd /home/timetable-back/
           sudo pm2 delete timetable-back
-          sudo pm2 start dist/src/main.js --name timetable-back
+          sudo pm2 start dist/src/main.js --name timetable-back --watch --port 4455
 
