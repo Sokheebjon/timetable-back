@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { HemisService } from './hemis.service';
 import { GroupListParamsDto } from '../../../libs/shared/dto/hemis/group-list-params.dto';
 import { ScheduleListParamsDto } from '../../../libs/shared/dto/hemis/schedule-list-params.dto';
