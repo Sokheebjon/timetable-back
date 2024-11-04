@@ -5,6 +5,7 @@ import { ScheduleListParamsDto } from '../../../libs/shared/dto/hemis/schedule-l
 import { FacultiesListDto } from '../../../libs/shared/dto/hemis/faculties-list.dto';
 import { AudienceOccupancyDto } from '../../../libs/shared/dto/hemis/audience-occupancy.dto';
 import { CourseListParamsDto } from '../../../libs/shared/dto/hemis/course-list.dto';
+import { SpecialityListParamsDto } from '../../../libs/shared/dto/hemis/speciality-list-params.dto';
 
 @Controller('hemis')
 export class HemisController {
@@ -43,5 +44,10 @@ export class HemisController {
   @Get('lesson-pairs')
   async getLessonPairsList(@Query() params: ScheduleListParamsDto) {
     return await this.hemisService.getLessonPairsList(params);
+  }
+
+  @Get('speciality-list')
+  async getSpecialityList(@Query() params: SpecialityListParamsDto) {
+    return await this.hemisService.getSpecialityList(params);
   }
 }

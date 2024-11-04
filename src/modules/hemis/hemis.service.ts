@@ -11,6 +11,7 @@ import {
   CourseListDto,
   CourseListParamsDto,
 } from '../../../libs/shared/dto/hemis/course-list.dto';
+import { SpecialityListParamsDto } from '../../../libs/shared/dto/hemis/speciality-list-params.dto';
 
 @Injectable()
 export class HemisService {
@@ -259,6 +260,33 @@ export class HemisService {
       }
     } catch (error) {
       console.error('Failed to get personal info:', error);
+    }
+  }
+
+  async getSpecialityList(params: SpecialityListParamsDto) {
+    try {
+      const response = await handleAsyncOperation(
+        firstValueFrom(
+          this.http
+            .get(`${this.hemisUrl}/data/specialty-list`, {
+              headers: {
+                Authorization: `Bearer ${this.token}`,
+              },
+              params: { ...params, limit: 200 },
+            })
+            .pipe(timeout(5000)),
+        ),
+      );
+
+
+
+      if (response.data) {
+        return { success: true, data: response.data };
+      } else {
+        return { success: false, data: {} };
+      }
+    } catch (error) {
+      console.error('Failed to get getCurriculumList info:', error);
     }
   }
 
