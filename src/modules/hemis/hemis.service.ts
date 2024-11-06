@@ -76,7 +76,7 @@ export class HemisService {
                 headers: {
                   Authorization: `Bearer ${this.token}`,
                 },
-                params,
+                params: { ...params, page: i },
               })
               .pipe(timeout(5000)),
           ),
@@ -137,29 +137,26 @@ export class HemisService {
             .pipe(timeout(5000)),
         ),
       );
-
-      const scheduleList = await this.getSchedulesList(params);
-
-      const occupancy = audienceList.data.data.items.map(
-        (auditory: { code: number }) => {
-          // Filter lessons that match the current auditorium code
-          const occupiedLessons = scheduleList.data.filter(
-            (lesson: { auditorium: { code: number } }) =>
-              lesson.auditorium.code === auditory.code,
-          );
-
-          return {
-            ...auditory,
-            occupancyCount: occupiedLessons.length, // Count of lessons occupying the auditorium
-            occupiedLessons, // List of lessons for detailed inspection if needed
-          };
-        },
-      );
+      // const occupancy = audienceList.data.data.items.map(
+      //   (auditory: { code: number }) => {
+      //     // Filter lessons that match the current auditorium code
+      //     const occupiedLessons = scheduleList.data.filter(
+      //       (lesson: { auditorium: { code: number } }) =>
+      //         lesson.auditorium.code === auditory.code,
+      //     );
+      //
+      //     return {
+      //       ...auditory,
+      //       occupancyCount: occupiedLessons.length, // Count of lessons occupying the auditorium
+      //       occupiedLessons, // List of lessons for detailed inspection if needed
+      //     };
+      //   },
+      // );
 
       if (audienceList.data) {
         return {
           success: true,
-          data: occupancy,
+          data: audienceList.data.data,
         };
       } else {
         return { success: false, data: {} };
@@ -277,8 +274,6 @@ export class HemisService {
             .pipe(timeout(5000)),
         ),
       );
-
-
 
       if (response.data) {
         return { success: true, data: response.data };
